@@ -15,6 +15,7 @@ async def upload_dataset(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed")
     
     dataset_id = str(uuid.uuid4())
+    os.makedirs(UPLOAD_DIR, exist_ok=True)
     file_path = os.path.join(UPLOAD_DIR, f"{dataset_id}.csv")
     
     # Save the file temporarily
