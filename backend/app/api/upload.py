@@ -13,6 +13,9 @@ UPLOAD_DIR = "uploads"
 async def upload_dataset(file: UploadFile = File(...)):
     if not file.filename.endswith('.csv'):
         raise HTTPException(status_code=400, detail="Only CSV files are allowed")
+        
+    if file.size and file.size > 50 * 1024 * 1024:
+        raise HTTPException(status_code=413, detail="File too large. Maximum size is 50MB.")
     
     dataset_id = str(uuid.uuid4())
     os.makedirs(UPLOAD_DIR, exist_ok=True)

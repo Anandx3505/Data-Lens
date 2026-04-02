@@ -16,6 +16,12 @@ export default function App() {
       return;
     }
 
+    const MAX_FILE_SIZE = 50 * 1024 * 1024; // 50MB
+    if (file.size > MAX_FILE_SIZE) {
+      setError('File is too large. Maximum size is 50MB.');
+      return;
+    }
+
     setLoading(true);
     setError('');
     setProfile(null);
