@@ -7,6 +7,7 @@ class ColumnProfile(BaseModel):
     null_count: int
     null_percentage: float
     unique_values_count: int
+    insight: str
 
 class DatasetProfileResponse(BaseModel):
     dataset_id: str

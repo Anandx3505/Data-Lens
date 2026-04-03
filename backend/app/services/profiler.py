@@ -26,11 +26,19 @@ def generate_profile(dataset_id: str) -> dict:
         null_percentage = round((null_count / row_count) * 100, 2) if row_count > 0 else 0.0
         unique_count = int(df[col].nunique())
         
+        if null_percentage > 20:
+            insight = f"⚠️ {col} is missing for {null_percentage}% of records. Consider handling nulls before analysis."
+        elif 5 <= null_percentage <= 20:
+            insight = f"ℹ️ {col} has moderate missing values ({null_percentage}%)."
+        else:
+            insight = ""
+            
         columns_profile[col] = {
             "data_type": str(df[col].dtype),
             "null_count": null_count,
             "null_percentage": null_percentage,
-            "unique_values_count": unique_count
+            "unique_values_count": unique_count,
+            "insight": insight
         }
         
     return {

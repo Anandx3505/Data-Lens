@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function DatasetProfile({ profile }) {
     if (!profile) return null;
 
@@ -35,24 +37,33 @@ export default function DatasetProfile({ profile }) {
                     </thead>
                     <tbody className="divide-y divide-slate-100">
                         {Object.entries(profile.columns).map(([colName, stats]) => (
-                            <tr key={colName} className="hover:bg-slate-50 transition-colors">
-                                <td className="px-6 py-4 font-medium text-slate-900">{colName}</td>
-                                <td className="px-6 py-4">
-                                    <span className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md text-xs font-mono">
-                                        {stats.data_type}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4">{stats.null_count.toLocaleString()}</td>
-                                <td className="px-6 py-4">
-                                    <span className={`px-2.5 py-1 rounded-md text-xs font-bold ${stats.null_percentage > 20 ? 'bg-red-100 text-red-700' :
-                                            stats.null_percentage > 0 ? 'bg-amber-100 text-amber-700' :
-                                                'bg-emerald-100 text-emerald-700'
-                                        }`}>
-                                        {stats.null_percentage}%
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 font-medium">{stats.unique_values_count.toLocaleString()}</td>
-                            </tr>
+                            <React.Fragment key={colName}>
+                                <tr className="hover:bg-slate-50 transition-colors">
+                                    <td className="px-6 py-4 font-medium text-slate-900">{colName}</td>
+                                    <td className="px-6 py-4">
+                                        <span className="bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md text-xs font-mono">
+                                            {stats.data_type}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4">{stats.null_count.toLocaleString()}</td>
+                                    <td className="px-6 py-4">
+                                        <span className={`px-2.5 py-1 rounded-md text-xs font-bold ${stats.null_percentage > 20 ? 'bg-red-100 text-red-700' :
+                                                stats.null_percentage > 0 ? 'bg-amber-100 text-amber-700' :
+                                                    'bg-emerald-100 text-emerald-700'
+                                            }`}>
+                                            {stats.null_percentage}%
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 font-medium">{stats.unique_values_count.toLocaleString()}</td>
+                                </tr>
+                                {stats.insight && (
+                                    <tr className="bg-amber-50/50">
+                                        <td colSpan="5" className="px-6 py-3 text-sm text-amber-800 font-medium border-t-0">
+                                            {stats.insight}
+                                        </td>
+                                    </tr>
+                                )}
+                            </React.Fragment>
                         ))}
                     </tbody>
                 </table>
