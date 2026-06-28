@@ -70,5 +70,21 @@ npm run dev
 When running locally, the frontend will default to `http://localhost:8000`. 
 When deploying, set the `VITE_API_URL` environment variable in your frontend hosting provider to point to your live backend URL.
 
----
-*Built with ❤️ by Anand*
+## 🔌 API Endpoints
+You can use the API endpoints below to interact with the backend.
+The backend provides the following REST API endpoints:
+
+### `GET /`
+Returns a welcome message indicating the API is running.
+
+### `POST /upload`
+Upload a CSV file for profiling.
+- **Request:** `multipart/form-data` with a `file` field containing the CSV. Maximum size is 50MB.
+- **Response:** JSON containing a success message and a generated `dataset_id`.
+
+### `GET /profile/{dataset_id}`
+Retrieves the generated data profile for the given dataset ID.
+- **Parameters:** `dataset_id` (Path) - The UUID returned from the `/upload` endpoint.
+- **Response:** JSON containing the full dataset profile (columns, data types, missing values, uniqueness metrics, etc.).
+
+Thank You !!
