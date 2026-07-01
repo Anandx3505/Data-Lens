@@ -1,7 +1,5 @@
 # Data Lens 🔍
 
-![Data Lens Hero](https://via.placeholder.com/1200x600?text=Data+Lens+-+Data+Quality+%26+Profiling+Platform)
-
 Data Lens is a fast, modern Data Quality & Profiling Platform that allows users to instantly analyze datasets. Simply upload a CSV file to automatically generate comprehensive profiles, including data type inference, missing value detection, and uniqueness metrics for every column.
 
 **[🔴 Live Demo (Frontend on Netlify)](https://your-netlify-url.netlify.app/)** | **[🟢 Live API (Backend on Render)](https://your-render-url.onrender.com/)**
